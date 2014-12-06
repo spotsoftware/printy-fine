@@ -15,6 +15,6 @@
 
 //= require lib/jquery-2.1.1.min
 //= require lib/bootstrap.min
-//= require lib/jquery.fullPage.min.js
+//= require lib/jquery.fullPage.js
 //= require pages/home
 //= require main

@@ -1,13 +1,13 @@
 footer
   .container.text-center
 
-    p.footer-authors.pull-left
+    p.footer-authors.col-sm-6
       i with
       | &nbsp;
       span.fa.fa-heart
       i by TeamSPOTSoftware
 
-    ul.footer-links.pull-right.list-inline
+    ul.footer-links.col-sm-6.list-inline
       each info in printyFineHelpers.links.filtered(user)
         if info === 'separator'
           li.footer-separator-wrp
