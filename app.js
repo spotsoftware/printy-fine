@@ -61,9 +61,14 @@ var csrfExclude = ['/url1', '/url2'];
 /**
  * Helpers.
  */
-app.helpers({
+app.locals.printyFineHelpers = {
   links: require('./helpers/links')
-});
+};
+
+/**
+ * Make lodash available in jade.
+ */
+app.locals._ = _;
 
 /**
  * Express configuration.

@@ -2,30 +2,12 @@ footer
   .container.text-center
 
     ul.pull-left.list-inline
-
-      if !user
-        unless title == 'Login'
-          li
-            a(href='/login') Login
-            | ◾︎
-        unless title == 'Create Account'
-          li
-            a(href='/signup') Create Account
-            | ◾︎
-      else
-      //- else if user.kind === "service"
-      //-   li
-      //-     a(href='/login') Login
-      //-     | ◾︎
-      //- li
-      //-   a(href='/login') Login
-      //-   | ◾
-      //- li
-      //-   a(href='/login') Login
-      //-   | ◾
-      //- li
-      //-   a(href='/login') Login
-      //-   | ◾
+      each info, url in printyFineHelpers.links.filtered(user)
+        li.footer-link-wrp
+          a(href=url)
+            if info.hasOwnProperty('icon')
+              span.fa(class='fa-' + info.icon)
+            = info.title
 
     p.pull-right
       i with
