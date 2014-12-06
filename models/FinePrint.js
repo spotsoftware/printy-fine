@@ -6,3 +6,5 @@ var finePrintSchema = new mongoose.Schema({
     kind: String,
     finePrintTags: Array,
 });
+
+module.exports = mongoose.model('FinePrint', finePrintSchema);

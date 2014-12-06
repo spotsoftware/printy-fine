@@ -1,4 +1,5 @@
 var Service = require('../models/Service');
+var User = require('../models/User');
 var querystring = require('querystring');
 var validator = require('validator');
 var async = require('async');
@@ -7,11 +8,11 @@ var Y = require('yui/yql');
 var _ = require('lodash');
 
 /**
- * GET /services
- * List of Services for current logged User
+ * GET /account/services
+ * List of Services for current User
  */
 
-exports.getServices = function (req, res) {
+exports.getUserServices = function (req, res) {
 
     var finePrintTags = [{
             name: 'Privacy',
@@ -36,6 +37,7 @@ exports.getServices = function (req, res) {
         name: 'MyNextSocial',
         description: 'The Next Social to rules them all :-D',
         url: 'http://github.com',
+        owner: 'owner@of.service',
         finePrints: finePrints
     }];
 
@@ -44,4 +46,35 @@ exports.getServices = function (req, res) {
         services: services
 
     });
+};
+
+/**
+ * POST /account/service/:serviceId
+ * Add a service for current User
+ * @param serviceId
+ */
+
+exports.postUserService = function (req, res, next) {
+
+    Service.findById(req.body.serviceId, function (err, service) {
+        if (err) return next(err);
+
+        User.findById(req.user.id, function (err, user) {
+            if (err) return next(err);
+
+            if (user.services) user.services = [];
+
+            user.services.push(service);
+
+            user.save(function (err) {
+                if (err) return next(err);
+                req.flash('success', {
+                    msg: 'Profile Service information updated.'
+                });
+                res.redirect('/account');
+            });
+        });
+
+    });
+
 };

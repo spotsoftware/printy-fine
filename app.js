@@ -27,6 +27,7 @@ var connectAssets = require('connect-assets');
 
 var homeController = require('./controllers/home');
 var userController = require('./controllers/user');
+var serviceController = require('./controllers/service');
 var apiController = require('./controllers/api');
 var serviceFineprintController = require('./controllers/serviceFineprint');
 
@@ -146,6 +147,11 @@ app.post('/account/profile', passportConf.isAuthenticated, userController.postUp
 app.post('/account/password', passportConf.isAuthenticated, userController.postUpdatePassword);
 app.post('/account/delete', passportConf.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConf.isAuthenticated, userController.getOauthUnlink);
+
+app.get('/account/services', passportConf.isAuthenticated, serviceController.getUserServices);
+app.post('/account/service/:serviceId', passportConf.isAuthenticated, serviceController.postUserService);
+
+
 
 /**
  * API examples routes.
