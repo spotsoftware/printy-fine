@@ -1,11 +1,35 @@
+@footer-link-space: 1rem;
+@separator-space: 0.8rem;
+
 footer {
+
   position: absolute;
   bottom: 0;
   width: 100%;
   height: 45px;
   line-height: 45px;
 
-  .footer-link-wrp {
-    margin-right: 1rem;
+  background-color: @breadcrumb-bg;
+  color: @text-color;
+
+
+  .footer-links,
+  .footer-authors {
+    margin: 0;
   }
+
+  .footer-link-wrp {
+    margin-right: @footer-link-space;
+  }
+
+  .footer-separator-wrp {
+    margin-right: @separator-space * 2;
+    margin-left: @separator-space;
+
+    .footer-separator {
+      border-left: 1px solid @breadcrumb-color;
+    }
+
+  }
+
 }
