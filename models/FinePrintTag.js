@@ -5,3 +5,5 @@ var finePrintTagSchema = new mongoose.Schema({
     description: String,
     icon: String
 });
+
+module.exports = mongoose.model('FinePrintTag', finePrintTagSchema);

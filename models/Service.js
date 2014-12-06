@@ -6,3 +6,5 @@ var serviceSchema = new mongoose.Schema({
     url: String,
     finePrints: Array
 });
+
+module.exports = mongoose.model('Service', serviceSchema);
