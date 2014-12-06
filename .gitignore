@@ -17,5 +17,7 @@ npm-debug.log
 node_modules
 .idea
 *.iml
+*.sublime-project
+*.sublime-workspace
 .DS_Store
 Thumbs.db
