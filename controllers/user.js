@@ -102,10 +102,21 @@ exports.postSignup = function (req, res, next) {
         kind: req.body.kind
     });
 
+    
+    //Mock Data
+    //Remove after Signup for Service Completed
+    if(!req.body.serviceName)
+    {
+        req.body.serviceName = "Service Mock for " + req.body.email;
+        req.body.serviceDescription = "Service Mock Description ";
+        req.body.serviceUrl = "http://mock.service.url";
+    }
+    
     var service = new Service({
-        name: 'Service - ' + req.body.email,
-        description: 'description for service ...',
-        url: 'http://github.com'
+        name: req.body.serviceName,
+        description: req.body.serviceDescription,
+        url: req.body.serviceUrl,
+        owner: req.body.email
     });
 
     User.findOne({

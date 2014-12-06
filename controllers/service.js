@@ -36,6 +36,7 @@ exports.getServices = function (req, res) {
         name: 'MyNextSocial',
         description: 'The Next Social to rules them all :-D',
         url: 'http://github.com',
+        owner: 'owner@of.service'
         finePrints: finePrints
     }];
 
