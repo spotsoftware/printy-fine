@@ -93,10 +93,11 @@ exports.postSignup = function(req, res, next) {
 
   var user = new User({
     email: req.body.email,
-    password: req.body.password
+    password: req.body.password,
+    kind: req.body.kind
   });
 
-  User.findOne({ email: req.body.email }, function(err, existingUser) {
+  User.findOne({ email: req.body.email, kind: req.body.kind }, function(err, existingUser) {
     if (existingUser) {
       req.flash('errors', { msg: 'Account with that email address already exists.' });
       return res.redirect('/signup');
