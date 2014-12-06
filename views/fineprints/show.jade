@@ -1,0 +1,17 @@
+extends layout
+
+block content
+
+  div.fineprint-tags-wrp.well
+
+    ul.fineprint-tags
+      each tag in tags
+        li.tag-wrp
+          div.tag.panel.panel-default
+            div.tag-name-wrp.panel-heading
+              h2.tag-name= tag.name
+            div.panel-body
+              div.tag-icon-wrp.col-6-md
+                img.tag-icon(src=tag.icon)
+              div.tag-title-wrp
+                h3.tag-title= tag.title
