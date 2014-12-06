@@ -18,6 +18,12 @@ block content
       .col-sm-7
         input.form-control(type='password', name='confirmPassword', id='confirmPassword', placeholder='Confirm Password')
     .form-group
+      label.col-sm-3.control-label(for='kind') Account type
+      .col-sm-7
+        select.form-control(id='kind', name='kind')
+          option(value='user') User
+          option(value='service') Service
+    .form-group
       .col-sm-offset-3.col-sm-7
         button.btn.btn-success(type='submit')
           span.ion-person-add
