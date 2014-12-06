@@ -1,8 +1,34 @@
 footer
   .container.text-center
-    p.pull-left © 2014 Company, Inc. All Rights Reserved
-    ul.pull-right.list-inline
-      li
-        a(href='https://github.com/sahat/hackathon-starter') GitHub Project
-      li
-        a(href='https://github.com/sahat/hackathon-starter/issues') Issues
+
+    ul.pull-left.list-inline
+
+      if !user
+        unless title == 'Login'
+          li
+            a(href='/login') Login
+            | ◾︎
+        unless title == 'Create Account'
+          li
+            a(href='/signup') Create Account
+            | ◾︎
+      else
+      //- else if user.kind === "service"
+      //-   li
+      //-     a(href='/login') Login
+      //-     | ◾︎
+      //- li
+      //-   a(href='/login') Login
+      //-   | ◾
+      //- li
+      //-   a(href='/login') Login
+      //-   | ◾
+      //- li
+      //-   a(href='/login') Login
+      //-   | ◾
+
+    p.pull-right
+      i with
+      | &nbsp;
+      span.fa.fa-heart
+      i by TeamSPOTSoftware

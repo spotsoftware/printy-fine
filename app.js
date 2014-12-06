@@ -59,6 +59,13 @@ mongoose.connection.on('error', function() {
 var csrfExclude = ['/url1', '/url2'];
 
 /**
+ * Helpers.
+ */
+app.helpers({
+  links: require('./helpers/links')
+});
+
+/**
  * Express configuration.
  */
 
