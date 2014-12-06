@@ -1,17 +1,28 @@
-extends layout
+extends ../layout
 
 block content
 
-  div.fineprint-tags-wrp.well
+  div.row.fineprint-header
+    div.fineprint-name-wrp.col-sm-10.vcenter
+      h2.fineprint-name= finePrint.name
+    div.fineprint-kind-wrp.col-sm-2.vcenter
+      span.fineprint-kind.label.label-info= finePrint.kind
 
-    ul.fineprint-tags
-      each tag in tags
-        li.tag-wrp
-          div.tag.panel.panel-default
-            div.tag-name-wrp.panel-heading
-              h2.tag-name= tag.name
-            div.panel-body
-              div.tag-icon-wrp.col-6-md
-                img.tag-icon(src=tag.icon)
-              div.tag-title-wrp
-                h3.tag-title= tag.title
+  div.fineprint-description-wrp.row
+    p.fineprint-description.col-sm-12= finePrint.description
+
+  div.fineprint-tags-wrp
+
+    div.well
+
+      ul.fineprint-tags
+        each tag in finePrint.finePrintTags
+          li.tag-wrp
+            div.tag.panel.panel-success
+              div.tag-name-wrp.panel-heading
+                h3.tag-name= tag.name
+              div.panel-body
+                div.tag-icon-wrp
+                  img.tag-icon(src=tag.icon)
+                div.tag-description-wrp
+                  p.tag-description= tag.description

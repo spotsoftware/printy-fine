@@ -28,6 +28,7 @@ var connectAssets = require('connect-assets');
 var homeController = require('./controllers/home');
 var userController = require('./controllers/user');
 var apiController = require('./controllers/api');
+var serviceFineprintController = require('./controllers/serviceFineprint');
 
 /**
  * API keys and Passport configuration.
@@ -225,6 +226,13 @@ app.get('/auth/venmo/callback', passport.authorize('venmo', { failureRedirect: '
  */
 
 app.use(errorHandler());
+
+
+/**
+ *
+ */
+
+app.get('/services/:serviceId/fineprints/:fineprintId', serviceFineprintController.getServiceFineprints);
 
 /**
  * Start Express server.
