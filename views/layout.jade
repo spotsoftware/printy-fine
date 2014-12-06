@@ -9,7 +9,7 @@ html
     title #{title} - Printy Fine
     != css('main')
 
-  body
+  body(data-path=reqPath)
     include partials/navbar
 
     include partials/flash
