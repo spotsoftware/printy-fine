@@ -118,6 +118,16 @@ app.use(function(req, res, next) {
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
 
 /**
+ * Make path available in views
+ */
+function addPathToLocals(req, res, next){
+  app.locals.reqPath = req.path;
+
+  next();
+}
+app.use(addPathToLocals);
+
+/**
  * Main routes.
  */
 
