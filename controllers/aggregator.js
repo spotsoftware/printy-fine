@@ -13,10 +13,13 @@ var _ = require('lodash');
 */
 
 exports.getAggregatedServices = function (req, res) {
+  User.findOne(req.params.userId, function (err, user) {
+    if (err) return next(err);
 
-  res.render('aggregator/services', {
-    title: 'My services',
-    services: new Array()
+    res.render('aggregator/services', {
+      title: 'My services',
+      services: user.services
+    });
   });
 };
 

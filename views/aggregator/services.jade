@@ -7,6 +7,23 @@ block content
       h3= title
 
     if services.length > 0
-      ul.list-group
+      .panel-group(id='services', role='tablist', aria-multiselectable='true')
+
+        each service, index in services
+          .panel.panel-default
+            .panel-heading.clearfix(role='tab', id='heading-' + index)
+              h4.panel-title.pull-left= service.name
+              a.pull-right(data-toggle='collapse', data-parent='#services', href='#body-' + index, aria-expanded='false', aria-controls='body-' + index)
+                span.glyphicon.glyphicon-plus(aria-hidden='true')
+            .panel-collapse.collapse(id='body-' + index, role='tabpanel', aria-labelledby='heading-' + index)
+              .panel-body
+                h6 Description
+                p=service.description
+                h6 Accepted fine prints
+                ul.list-group
+                  each fineprint in service.finePrints
+                    li.list-group-item.clearfix
+                      p.pull-left= fineprint.name
+                      a.btn.btn-default.pull-right(href='/services/' + service._id + '/finePrints/' + fineprint._id, target='_blank') Preview
     else
       p You are not registered to any service at the moment.
