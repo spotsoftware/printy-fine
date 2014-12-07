@@ -5,3 +5,8 @@ block content
   .container
     .page-header
       h3= title
+
+    if tags.length > 0
+      ul.list-group
+    else
+      p You haven't got any associated fineprint tag at the moment.

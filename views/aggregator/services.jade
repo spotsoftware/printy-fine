@@ -5,3 +5,8 @@ block content
   .container
     .page-header
       h3= title
+
+    if services.length > 0
+      ul.list-group
+    else
+      p You are not registered to any service at the moment.
