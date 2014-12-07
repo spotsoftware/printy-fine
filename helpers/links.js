@@ -30,8 +30,14 @@ var filtered = function(user) {
   } else {
     if (user.kind === 'user') {
       filteredLinks.push({
-        url: '/aggregator',
-        title: 'Aggregator',
+        url: '/aggregator/' + user.id + '/services',
+        title: 'My services',
+        icon: 'archive',
+        group: 'page'
+      });
+      filteredLinks.push({
+        url: '/aggregator/' + user.id + '/tags',
+        title: 'My tags',
         icon: 'archive',
         group: 'page'
       });

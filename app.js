@@ -30,6 +30,7 @@ var userController = require('./controllers/user');
 var serviceController = require('./controllers/service');
 var apiController = require('./controllers/api');
 var finePrintController = require('./controllers/finePrint');
+var aggregatorController = require('./controllers/aggregator');
 
 /**
  * API keys and Passport configuration.
@@ -158,6 +159,9 @@ app.post('/services/:serviceId/fineprint', finePrintController.postFinePrint);
 app.get('/services/:serviceId/fineprints/:fineprintId', finePrintController.getFinePrint);
 app.get('/services/:serviceId/fineprints/:fineprintId/edit', finePrintController.getEditFinePrint);
 app.post('/services/:serviceId/fineprints/:fineprintId/edit', finePrintController.postFinePrint);
+
+app.get('/aggregator/:userId/services', aggregatorController.getAggregatedServices);
+app.get('/aggregator/:userId/tags', aggregatorController.getAggregatedTags);
 
 
 /**
