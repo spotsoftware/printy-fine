@@ -5,7 +5,11 @@ block content
   .container
     .page-header
       h3= service.name
+      p= service.description
+      a.btn.btn-link(href=service.ulr)=service.name
+      
 
+    h4 Fine Prints
     a.btn.btn-link(href='/services/' + service.id + '/finePrint') Add Fine Print
     
     
@@ -14,11 +18,12 @@ block content
           thead
             tr
               th Name
-              th 
+              th Action
           tbody
           each finePrint in service.finePrints
             tr
               td= finePrint.name
               td
                 a.btn.btn-link(href='/services/' + service.id + '/finePrints/' + finePrint._id + '/edit') Edit
+                a.btn.btn-link(href='/services/' + service.id + '/finePrints/' + finePrint._id + '') Preview
 
