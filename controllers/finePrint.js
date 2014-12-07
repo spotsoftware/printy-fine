@@ -7,6 +7,46 @@ var request = require('request');
 var Y = require('yui/yql');
 var _ = require('lodash');
 
+var _tags = [
+    {
+        code: 'no-privacy',
+        title: 'There is no Privacy',
+        icon: 'http://loremicon.com/i/flat/64/security'
+    },
+    {
+        code: 'time',
+        title: 'Your time is our',
+        icon: 'http://loremicon.com/i/flat/64/clock'
+    },
+    {
+        code: 'photo-property',
+        title: 'All images is property of the service',
+        icon: 'http://loremicon.com/i/flat/64/image '
+    },
+    {
+        code: 'automatic-updates',
+        title: 'There is no Privacy',
+        icon: 'http://loremicon.com/i/flat/64/download '
+    },
+    {
+        code: 'sold-souls',
+        title: 'Your soul is property of this service',
+        icon: 'http://loremicon.com/i/flat/64/money'
+    },
+    {
+        code: 'credit-card',
+        title: 'We can use your credit card as we need',
+        icon: 'http://loremicon.com/i/flat/64/creditcard'
+    },
+    {
+        code: 'home-key',
+        title: 'We have a copy of your home\'s keys',
+        icon: 'http://loremicon.com/i/flat/64/key'
+    },
+     
+];
+
+
 /**
  * GET /services/:service_id/fineprints/:fineprintId
  * Show a fineprint for a particular service.
@@ -15,17 +55,7 @@ var _ = require('lodash');
 exports.getFinePrint = function (req, res) {
 
 
-    var finePrintTags = [{
-            name: 'Privacy',
-            description: 'we have lost it !!!',
-            icon: 'http://loremicon.com/i/flat/64/security'
-    },
-        {
-            name: 'Time',
-            description: 'tic tac tic tac',
-            icon: 'http://loremicon.com/i/flat/64/clock'
-    }];
-
+    var finePrintTags = _tags;
 
     Service.findById(req.params.serviceId, function (err, service) {
         if (err) return next(err);
@@ -64,17 +94,13 @@ exports.getFinePrint = function (req, res) {
 
 exports.getNewFinePrint = function (req, res, next) {
 
-    var tags = ['Privacy', 'Sold soul', 'Photo', 'Credit Card Pin Code', 'Property of Everythings'];
-
     Service.findById(req.params.serviceId, function (err, service) {
         if (err) return next(err);
-
-
 
         res.render('fineprints/add', {
             title: service.name,
             service: service,
-            availableTags: tags
+            availableTags: _tags
         });
 
     });
@@ -86,8 +112,6 @@ exports.getNewFinePrint = function (req, res, next) {
  */
 
 exports.getEditFinePrint = function (req, res, next) {
-
-    var tags = ['Privacy', 'Sold soul', 'Photo', 'Credit Card Pin Code', 'Property of Everythings'];
 
     Service.findById(req.params.serviceId, function (err, service) {
         if (err) return next(err);
@@ -109,7 +133,7 @@ exports.getEditFinePrint = function (req, res, next) {
             title: service.name,
             service: service,
             finePrint: finePrint,
-            availableTags: tags
+            availableTags: _tags
         });
 
     });

@@ -21,9 +21,9 @@ block content
         label.col-sm-3.control-label(for='Tags') Tags
         .btn-group(data-toggle='buttons').col-sm-7
             each tag in availableTags
-                label.btn.btn-primary
+                label.btn.btn-default
                     input(type="checkbox")
-                    =tag
+                    img(src=tag.icon alt=tag.title)
           
       .form-group
         .col-sm-offset-3.col-sm-7
