@@ -14,9 +14,22 @@ block content
       .form-group
         label.col-sm-3.control-label(for='description') Description
         .col-sm-7
-          input.form-control(type='text', name='description', id='description', placeholder='description', , value=finePrint.description)
+          textarea.form-control(rows='5', name='description', id='description', placeholder='description')
+            =finePrint.description
+          
+      .form-group
+        label.col-sm-3.control-label(for='Tags') Tags
+        .btn-group(data-toggle='buttons').col-sm-7
+            each tag in availableTags
+                label.btn.btn-primary
+                    input(type="checkbox")
+                    =tag
+          
       .form-group
         .col-sm-offset-3.col-sm-7
+          a.btn.btn-warning(href='/service')
+            span.ion-android-arrow-back
+            | Back
           button.btn.btn-success(type='submit')
             span.ion-person-add
             | Save

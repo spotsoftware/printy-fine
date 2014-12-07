@@ -6,24 +6,23 @@ block content
     .page-header
       h3= service.name
       p= service.description
-      a.btn.btn-link(href=service.ulr)=service.name
       
 
-    h4 Fine Prints
-    a.btn.btn-link(href='/services/' + service.id + '/finePrint') Add Fine Print
+    h4.col-sm-10 Fine Prints
+    a.col-sm-2.btn.btn-default(href='/services/' + service.id + '/finePrint') Add Fine Print
     
     
-    .table-responsive
+    .table-responsive.col-sm-12
         table.table.table-striped
           thead
             tr
-              th Name
-              th Action
+              th(width='80%') Name
+              th.text-center Action
           tbody
           each finePrint in service.finePrints
             tr
               td= finePrint.name
-              td
-                a.btn.btn-link(href='/services/' + service.id + '/finePrints/' + finePrint._id + '/edit') Edit
-                a.btn.btn-link(href='/services/' + service.id + '/finePrints/' + finePrint._id + '') Preview
+              td.text-right
+                a.btn.btn-primary(href='/services/' + service.id + '/finePrints/' + finePrint._id + '/edit') Edit
+                a.btn.btn-default(href='/services/' + service.id + '/finePrints/' + finePrint._id target='_blank') Preview
 
