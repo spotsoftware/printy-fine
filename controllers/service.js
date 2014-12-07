@@ -56,7 +56,7 @@ exports.getUserServices = function (req, res) {
 
 exports.postUserService = function (req, res, next) {
 
-    Service.findById(req.body.serviceId, function (err, service) {
+    Service.findById(req.params.serviceId, function (err, service) {
         if (err) return next(err);
 
         User.findById(req.user.id, function (err, user) {
@@ -73,6 +73,27 @@ exports.postUserService = function (req, res, next) {
                 });
                 res.redirect('/account');
             });
+        });
+
+    });
+
+};
+
+/**
+ * GET /service
+ * Get Service Details for Current User (Owner)
+ */
+
+exports.getServiceForOwner = function (req, res) {
+
+    Service.findOne({
+        owner: req.user.id
+    }, function (err, service) {
+        if (err) return next(err);
+
+        res.render('services/show', {
+            title: service.name,
+            service: service
         });
 
     });

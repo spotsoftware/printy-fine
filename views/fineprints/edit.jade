@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+
+  .container
+    .page-header
+      h3= finePrint.name + " - Edit"
+    form.form-horizontal(id='finePrint-form', method='POST')
+      input(type='hidden', name='_csrf', value=_csrf)
+      .form-group
+        label.col-sm-3.control-label(for='name') Name
+        .col-sm-7
+          input.form-control(type='text', name='name', id='name', placeholder='name', autofocus, value=finePrint.name)
+      .form-group
+        label.col-sm-3.control-label(for='description') Description
+        .col-sm-7
+          input.form-control(type='text', name='description', id='description', placeholder='description', , value=finePrint.description)
+      .form-group
+        .col-sm-offset-3.col-sm-7
+          button.btn.btn-success(type='submit')
+            span.ion-person-add
+            | Save

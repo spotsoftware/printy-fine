@@ -102,22 +102,6 @@ exports.postSignup = function (req, res, next) {
         kind: req.body.kind
     });
 
-    
-    //Mock Data
-    //Remove after Signup for Service Completed
-    if(!req.body.serviceName)
-    {
-        req.body.serviceName = "Service Mock for " + req.body.email;
-        req.body.serviceDescription = "Service Mock Description ";
-        req.body.serviceUrl = "http://mock.service.url";
-    }
-    
-    var service = new Service({
-        name: req.body.serviceName,
-        description: req.body.serviceDescription,
-        url: req.body.serviceUrl,
-        owner: req.body.email
-    });
 
     User.findOne({
         email: req.body.email,
@@ -135,11 +119,32 @@ exports.postSignup = function (req, res, next) {
 
                 if (err) return next(err);
 
-                //save the service too
-                service.save(function (err) {
-                    if (err) return next(err);
+                if (user.kind === 'developer') {
+                    //Mock Data
+                    //Remove after Signup for Service Completed
+                    if (!req.body.serviceName) {
+                        req.body.serviceName = "Service Mock for " + req.body.email;
+                        req.body.serviceDescription = "Service Mock Description ";
+                        req.body.serviceUrl = "http://mock.service.url";
+                    }
+
+                    var service = new Service({
+                        name: req.body.serviceName,
+                        description: req.body.serviceDescription,
+                        url: req.body.serviceUrl,
+                        owner: user.id
+                    });
+
+                    //save the service too
+                    service.save(function (err) {
+                        if (err) return next(err);
+                        res.redirect('/service');
+                    });
+                }
+                else
+                {
                     res.redirect('/');
-                });
+                }
 
             });
         });

@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+
+  .container
+    .page-header
+      h3= service.name
+
+    a.btn.btn-link(href='/services/' + service.id + '/finePrint') Add Fine Print
+    
+    
+    .table-responsive
+        table.table.table-striped
+          thead
+            tr
+              th Name
+              th 
+          tbody
+          each finePrint in service.finePrints
+            tr
+              td= finePrint.name
+              td
+                a.btn.btn-link(href='/services/' + service.id + '/finePrints/' + finePrint._id + '/edit') Edit
+

@@ -36,10 +36,10 @@ var filtered = function(user) {
         group: 'page'
       });
     }
-    if (user.kind === 'service') {
+    if (user.kind === 'developer') {
       filteredLinks.push({
-        url: '/fineprints/new',
-        title: 'Create FinePrint',
+        url: '/service',
+        title: 'Service',
         icon: 'file',
         group: 'page'
       });

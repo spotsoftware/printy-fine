@@ -29,7 +29,7 @@ var homeController = require('./controllers/home');
 var userController = require('./controllers/user');
 var serviceController = require('./controllers/service');
 var apiController = require('./controllers/api');
-var serviceFineprintController = require('./controllers/serviceFineprint');
+var finePrintController = require('./controllers/finePrint');
 
 /**
  * API keys and Passport configuration.
@@ -151,6 +151,13 @@ app.get('/account/unlink/:provider', passportConf.isAuthenticated, userControlle
 app.get('/account/services', passportConf.isAuthenticated, serviceController.getUserServices);
 app.post('/account/service/:serviceId', passportConf.isAuthenticated, serviceController.postUserService);
 
+app.get('/service', serviceController.getServiceForOwner);
+
+app.get('/services/:serviceId/fineprint', finePrintController.getNewFinePrint);
+app.post('/services/:serviceId/fineprint', finePrintController.postFinePrint);
+app.get('/services/:serviceId/fineprints/:fineprintId', finePrintController.getFinePrint);
+app.get('/services/:serviceId/fineprints/:fineprintId/edit', finePrintController.getEditFinePrint);
+app.post('/services/:serviceId/fineprints/:fineprintId/edit', finePrintController.postFinePrint);
 
 
 /**
@@ -233,12 +240,6 @@ app.get('/auth/venmo/callback', passport.authorize('venmo', { failureRedirect: '
 
 app.use(errorHandler());
 
-
-/**
- *
- */
-
-app.get('/services/:serviceId/fineprints/:fineprintId', serviceFineprintController.getServiceFineprints);
 
 /**
  * Start Express server.
