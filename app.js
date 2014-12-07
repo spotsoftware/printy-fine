@@ -157,6 +157,7 @@ app.get('/service', serviceController.getServiceForOwner);
 app.get('/services/:serviceId/fineprint', finePrintController.getNewFinePrint);
 app.post('/services/:serviceId/fineprint', finePrintController.postFinePrint);
 app.get('/services/:serviceId/fineprints/:fineprintId', finePrintController.getFinePrint);
+app.get('/services/:serviceId/fineprints/:fineprintId/preview', finePrintController.getFinePrintPreview);
 app.get('/services/:serviceId/fineprints/:fineprintId/edit', finePrintController.getEditFinePrint);
 app.post('/services/:serviceId/fineprints/:fineprintId/edit', finePrintController.postFinePrint);
 

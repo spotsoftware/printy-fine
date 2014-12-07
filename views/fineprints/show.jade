@@ -9,7 +9,6 @@ block content
   div.fineprint-tags-wrp
 
     div.well
-
       ul.fineprint-tags
         each tag in finePrint.finePrintTags
           li.tag-wrp
@@ -22,6 +21,6 @@ block content
                 div.tag-description-wrp.col-sm-11
                   p.tag-description= tag.description
 
-
-  div.fineprint-description-wrp.row
-    p.fineprint-description.col-sm-12= finePrint.description
+    h3 Description
+        div.fineprint-description-wrp.row
+            p.fineprint-description.col-sm-12!= finePrint.description

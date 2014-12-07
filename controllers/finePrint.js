@@ -54,7 +54,46 @@ var _tags = [
      
 ];
 
+/**
+ * GET /services/:service_id/fineprints/:fineprintId/preview
+ * Show a fineprint preview for a particular service.
+ */
 
+exports.getFinePrintPreview = function (req, res) {
+
+
+    var finePrintTags = _tags;
+
+    Service.findById(req.params.serviceId, function (err, service) {
+        if (err) return next(err);
+
+        var finePrint = {
+            name: '',
+            description: ''
+        };
+
+        for (var i = 0; i < service.finePrints.length; i++) {
+            var item = service.finePrints[i];
+
+            if (item._id == req.params.fineprintId) {
+                finePrint = item;
+            }
+        }
+        
+        finePrint.kind = 'Privacy';
+        finePrint.finePrintTags = finePrintTags;
+
+        res.render('fineprints/preview', {
+            title: finePrint.name,
+            service: service,
+            finePrint: finePrint,
+        });
+
+    });
+
+
+};
+    
 /**
  * GET /services/:service_id/fineprints/:fineprintId
  * Show a fineprint for a particular service.
