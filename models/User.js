@@ -217,7 +217,9 @@ userSchema.methods.getFinePrintsWithTag = function (tagCode) {
     for(var j = 0; j < this.services[i].finePrints.length; j++) {
       for(var k = 0; k < this.services[i].finePrints[j].finePrintTags.length; k++) {
         if(this.services[i].finePrints[j].finePrintTags[k].code === tagCode) {
+          // omg, forgive me but I have to mock
           this.services[i].finePrints[j].serviceId = this.services[i]._id;
+          this.services[i].finePrints[j].serviceName = this.services[i].name;
           fineprints.push(this.services[i].finePrints[j]);
           break;
         }

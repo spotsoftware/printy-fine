@@ -25,7 +25,8 @@ block content
                 ul.list-group
                   each fineprint in tag.linkedFinePrints
                     li.list-group-item.clearfix
-                      p.pull-left= fineprint.name
+                      span.pull-left= fineprint.serviceName + '\'s'
+                      span.pull-left.left-detached= fineprint.name
                       a.btn.btn-default.pull-right(href='/services/' + fineprint.serviceId + '/finePrints/' + fineprint._id, target='_blank') Preview
     else
       p You haven't got any associated fineprint tag at the moment.
