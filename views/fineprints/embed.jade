@@ -1,0 +1,20 @@
+div.fineprint-tags-wrp
+
+    div.panel.panel-default
+     div.panel-body
+        div.row(class="col-sm-offset-#{parseInt((12 - finePrint.finePrintTags.length) / 2) + 1}")
+          each tag in finePrint.finePrintTags
+            div.col-sm-1
+                img.tag-icon(src=tag.icon, alt=tag.title)
+     div.panel-footer
+        div.row
+            div.col-sm-2
+                | powered by 
+                a(href="http://marcospotsoftware.koding.io:8000") PrintyFine 
+            div.col-sm-7.text-center
+                a.btn.btn-primary(href='/services/' + service.id + '/finePrints/' + finePrint._id) More
+            div.col-sm-3.text-right
+                | with &nbsp;
+                span.fa.fa-heart
+                | &nbsp; by 
+                a(href="https://github.com/koding/global.hackathon/blob/master/Teams/TeamSPOTSoftware/ABOUT.md") TeamSPOTSoftware

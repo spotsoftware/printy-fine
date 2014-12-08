@@ -31,6 +31,7 @@ var serviceController = require('./controllers/service');
 var apiController = require('./controllers/api');
 var finePrintController = require('./controllers/finePrint');
 var aggregatorController = require('./controllers/aggregator');
+var fakeServiceController = require('./controllers/fakeService');
 
 /**
  * API keys and Passport configuration.
