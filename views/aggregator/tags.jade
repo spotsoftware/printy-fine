@@ -7,6 +7,21 @@ block content
       h3= title
 
     if tags.length > 0
-      ul.list-group
+      .panel-group(id='tags', role='tablist', aria-multiselectable='true')
+
+        each tag, index in tags
+          .panel.panel-default
+            .panel-heading.clearfix(role='tab', id='heading-' + index)
+              .pull-left
+                img(src=tag.icon)
+              .pull-left.left-detached
+                h5= tag.title
+                h6= tag.description
+              a.pull-right(data-toggle='collapse', data-parent='#tags', href='#body-' + index, aria-expanded='false', aria-controls='body-' + index)
+                span.glyphicon.glyphicon-plus(aria-hidden='true')
+            .panel-collapse.collapse(id='body-' + index, role='tabpanel', aria-labelledby='heading-' + index)
+              .panel-body
+                h6 Description
+                p=tag.description
     else
       p You haven't got any associated fineprint tag at the moment.

@@ -29,9 +29,14 @@ exports.getAggregatedServices = function (req, res) {
 */
 
 exports.getAggregatedTags = function (req, res) {
+  User.findOne(req.params.userId, function (err, user) {
+    if (err) return next(err);
 
-  res.render('aggregator/tags', {
-    title: 'My tags',
-    tags: new Array()
+    debugger;
+
+    res.render('aggregator/tags', {
+      title: 'My tags',
+      tags: user.getAllFinePrintTags()
+    });
   });
 };
