@@ -15,7 +15,7 @@ var _ = require('lodash');
 exports.getAggregatedServices = function (req, res) {
   User.findOne(req.params.userId, function (err, user) {
     if (err) return next(err);
-
+    
     res.render('aggregator/services', {
       title: 'My services',
       services: user.services
@@ -32,11 +32,15 @@ exports.getAggregatedTags = function (req, res) {
   User.findOne(req.params.userId, function (err, user) {
     if (err) return next(err);
 
-    debugger;
+    var userTags = user.getAllUserTags();
+
+    for(var i = 0; i < userTags.length; i++) {
+      userTags[i].linkedFinePrints = user.getFinePrintsWithTag(userTags[i].code);
+    }
 
     res.render('aggregator/tags', {
       title: 'My tags',
-      tags: user.getAllFinePrintTags()
+      tags: userTags
     });
   });
 };

@@ -170,19 +170,21 @@ var _tags = [
   }
 ];
 
-userSchema.methods.getAllFinePrintTags = function () {
+userSchema.methods.getAllUserTags = function () {
 
   // MOCKING DATA
 
   for(var i = 0; i < this.services.length; i++) {
     for(var j = 0; j < this.services[i].finePrints.length; j++) {
-      if(j%2 === 0) {
+      if(i === 0) {
         this.services[i].finePrints[j].finePrintTags.push(_tags[0]);
-        this.services[i].finePrints[j].finePrintTags.push(_tags[2]);
+        this.services[i].finePrints[j].finePrintTags.push(_tags[3]);
         this.services[i].finePrints[j].finePrintTags.push(_tags[4]);
         this.services[i].finePrints[j].finePrintTags.push(_tags[6]);
-      } else {
+      } else if(i === 1) {
         this.services[i].finePrints[j].finePrintTags.push(_tags[1]);
+        this.services[i].finePrints[j].finePrintTags.push(_tags[2]);
+      } else {
         this.services[i].finePrints[j].finePrintTags.push(_tags[3]);
         this.services[i].finePrints[j].finePrintTags.push(_tags[5]);
       }
@@ -192,15 +194,38 @@ userSchema.methods.getAllFinePrintTags = function () {
   // NORMAL FLOW
 
   var tags = new Array();
+  var foundTag = null;
+
   for(var i = 0; i < this.services.length; i++) {
     for(var j = 0; j < this.services[i].finePrints.length; j++) {
       for(var k = 0; k < this.services[i].finePrints[j].finePrintTags.length; k++) {
-        tags.push(this.services[i].finePrints[j].finePrintTags[k]);
+        foundTag = this.services[i].finePrints[j].finePrintTags[k];
+        if(tags.indexOf(foundTag) === -1) {
+          tags.push(foundTag);
+        }
       }
     }
   }
 
   return tags;
 };
+
+userSchema.methods.getFinePrintsWithTag = function (tagCode) {
+  var fineprints = new Array();
+
+  for(var i = 0; i < this.services.length; i++) {
+    for(var j = 0; j < this.services[i].finePrints.length; j++) {
+      for(var k = 0; k < this.services[i].finePrints[j].finePrintTags.length; k++) {
+        if(this.services[i].finePrints[j].finePrintTags[k].code === tagCode) {
+          this.services[i].finePrints[j].serviceId = this.services[i]._id;
+          fineprints.push(this.services[i].finePrints[j]);
+          break;
+        }
+      }
+    }
+  }
+
+  return fineprints;
+}
 
 module.exports = mongoose.model('User', userSchema);

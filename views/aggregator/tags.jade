@@ -18,10 +18,14 @@ block content
                 h5= tag.title
                 h6= tag.description
               a.pull-right(data-toggle='collapse', data-parent='#tags', href='#body-' + index, aria-expanded='false', aria-controls='body-' + index)
-                span.glyphicon.glyphicon-plus(aria-hidden='true')
+                span.glyphicon.glyphicon-plus(aria-hidden='true')= tag.linkedFinePrints.length
             .panel-collapse.collapse(id='body-' + index, role='tabpanel', aria-labelledby='heading-' + index)
               .panel-body
-                h6 Description
-                p=tag.description
+                h6 All the associated fineprints
+                ul.list-group
+                  each fineprint in tag.linkedFinePrints
+                    li.list-group-item.clearfix
+                      p.pull-left= fineprint.name
+                      a.btn.btn-default.pull-right(href='/services/' + fineprint.serviceId + '/finePrints/' + fineprint._id, target='_blank') Preview
     else
       p You haven't got any associated fineprint tag at the moment.
