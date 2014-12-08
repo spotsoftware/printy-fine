@@ -18,9 +18,10 @@ html
                 h1.text-center.login-title=service.name
                     div.account-wall
                         img.profile-img(src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120")
-                        form.form-signin()
-                            input.form-control(type="text" placeholder="Email" autofocus)
-                            input.form-control(type="passowrd" placeholder="Password")
+                        form.form-signin(method='POST')
+                            input(type='hidden', name='_csrf', value=_csrf)
+                            input.form-control(name="email" type="text" placeholder="Email" autofocus)
+                            input.form-control(name="password" type="passowrd" placeholder="Password")
                             button.btn.btn-lg.btn-primary.btn-block(type="submit") Sign in
                             span.clearfix
                     br

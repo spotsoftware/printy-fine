@@ -1,5 +1,6 @@
 var Service = require('../models/Service');
 var FinePrint = require('../models/FinePrint');
+var User = require('../models/User');
 var querystring = require('querystring');
 var validator = require('validator');
 var async = require('async');
@@ -13,7 +14,7 @@ var _tags = [
         title: 'There is no Privacy',
         icon: 'http://loremicon.com/i/flat/64/security',
         description: 'With the subscription of this service, you agree to NO MORE Privacy.'
-        
+
     },
     {
         code: 'time',
@@ -51,7 +52,7 @@ var _tags = [
         icon: 'http://loremicon.com/i/flat/64/key',
         description: 'You must make a copy of your home\'s keys. We will evaulate it as our accomodation.'
     },
-     
+
 ];
 
 /**
@@ -59,7 +60,7 @@ var _tags = [
  * Show a fineprint preview for a particular service.
  */
 
-exports.getFinePrintPreview = function (req, res) {
+exports.getFinePrintPreview = function (req, res, next) {
 
 
     var finePrintTags = _tags;
@@ -79,7 +80,7 @@ exports.getFinePrintPreview = function (req, res) {
                 finePrint = item;
             }
         }
-        
+
         finePrint.kind = 'Privacy';
         finePrint.finePrintTags = finePrintTags;
 
@@ -93,7 +94,53 @@ exports.getFinePrintPreview = function (req, res) {
 
 
 };
-    
+
+/**
+ * POST /services/:service_id/fineprints/:fineprintId/preview
+ * Register a service for an enduser
+ */
+
+exports.postFinePrintPreview = function (req, res, next) {
+
+    console.log(req.body);
+
+    var finePrintTags = _tags;
+
+    Service.findById(req.params.serviceId, function (err, service) {
+        if (err) return next(err);
+
+        User.findOne({
+            email: req.body.email
+        }, function (err, existingUser) {
+
+            if (existingUser) {
+
+                if (!existingUser.services)
+                    existingUser.services = [];
+
+                existingUser.services.push(service);
+
+                existingUser.save(function (err) {
+                    if (err) return next(err);
+
+                    return res.redirect('/my/services');
+
+                });
+
+            } else {
+
+                return res.redirect('/');
+
+            }
+
+
+        });
+
+    });
+
+
+};
+
 /**
  * GET /services/:service_id/fineprints/:fineprintId
  * Show a fineprint for a particular service.
@@ -119,7 +166,7 @@ exports.getFinePrint = function (req, res) {
                 finePrint = item;
             }
         }
-        
+
         finePrint.kind = 'Privacy';
         finePrint.finePrintTags = finePrintTags;
 

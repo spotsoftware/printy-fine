@@ -30,13 +30,13 @@ var filtered = function(user) {
   } else {
     if (user.kind === 'user') {
       filteredLinks.push({
-        url: '/aggregator/' + user.id + '/services',
+        url: '/my/services',
         title: 'My services',
         icon: 'archive',
         group: 'page'
       });
       filteredLinks.push({
-        url: '/aggregator/' + user.id + '/tags',
+        url: '/my/tags',
         title: 'My tags',
         icon: 'archive',
         group: 'page'

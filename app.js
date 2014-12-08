@@ -159,11 +159,12 @@ app.get('/services/:serviceId/fineprint', finePrintController.getNewFinePrint);
 app.post('/services/:serviceId/fineprint', finePrintController.postFinePrint);
 app.get('/services/:serviceId/fineprints/:fineprintId', finePrintController.getFinePrint);
 app.get('/services/:serviceId/fineprints/:fineprintId/preview', finePrintController.getFinePrintPreview);
+app.post('/services/:serviceId/fineprints/:fineprintId/preview', finePrintController.postFinePrintPreview);
 app.get('/services/:serviceId/fineprints/:fineprintId/edit', finePrintController.getEditFinePrint);
 app.post('/services/:serviceId/fineprints/:fineprintId/edit', finePrintController.postFinePrint);
 
-app.get('/aggregator/:userId/services', aggregatorController.getAggregatedServices);
-app.get('/aggregator/:userId/tags', aggregatorController.getAggregatedTags);
+app.get('/my/services', aggregatorController.getAggregatedServices);
+app.get('/my/tags', aggregatorController.getAggregatedTags);
 
 
 /**

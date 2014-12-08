@@ -8,12 +8,12 @@ var Y = require('yui/yql');
 var _ = require('lodash');
 
 /**
-* GET /aggregator/:userId/services
+* GET /my/services
 * Get Services the user is registered to.
 */
 
 exports.getAggregatedServices = function (req, res) {
-  User.findOne(req.params.userId, function (err, user) {
+  User.findOne(req.user.id, function (err, user) {
     if (err) return next(err);
     
     res.render('aggregator/services', {
@@ -24,12 +24,12 @@ exports.getAggregatedServices = function (req, res) {
 };
 
 /**
-* GET /aggregator/:userId/tags
+* GET /my/tags
 * Get Tags the user accepted registering himself on the various services.
 */
 
 exports.getAggregatedTags = function (req, res) {
-  User.findOne(req.params.userId, function (err, user) {
+  User.findOne(req.user.id, function (err, user) {
     if (err) return next(err);
 
     var userTags = user.getAllUserTags();
